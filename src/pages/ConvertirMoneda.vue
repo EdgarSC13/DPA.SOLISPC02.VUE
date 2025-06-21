@@ -1,6 +1,6 @@
 <template>
   <div class="contenedor">
-    <h6 class="Titulo">Conversión de Monedas</h6>
+    <h4 class="Titulo titulo-color">Conversión de Monedas</h4>
     <q-page padding>
       <q-input
         v-model="amount"
@@ -8,9 +8,34 @@
         type="number"
         :rules="[(val) => val > 0 || 'Debe ser un monto válido']"
         lazy-rules
+        outlined
       />
-      <q-select v-model="fromCurrency" :options="currencies" label="Desde" emit-value map-options />
-      <q-select v-model="toCurrency" :options="currencies" label="Hacia" emit-value map-options />
+      <q-row class="q-gutter-sm">
+        <q-col :cols="6" class="q-mb-sm">
+          <q-select
+            v-model="fromCurrency"
+            :options="currencies"
+            label="Desde"
+            emit-value
+            map-options
+            transition-show="jump-up"
+            transition-hide="jump-up"
+            filled
+          />
+        </q-col>
+        <q-col :cols="6" class="q-mb-sm">
+          <q-select
+            v-model="toCurrency"
+            :options="currencies"
+            label="Hacia"
+            emit-value
+            map-options
+            transition-show="jump-up"
+            transition-hide="jump-up"
+            filled
+          />
+        </q-col>
+      </q-row>
 
       <div class="boton-container">
         <q-btn label="Convertir" @click="convertCurrency" :disabled="isLoading" color="primary" />
@@ -113,19 +138,23 @@ export default {
 
 .contenedor {
   width: 50%;
-  height: 80vh; /* Ocupar el 80% de la altura de la pantalla (opcional) */
+  height: 90vh;
   margin: 30px auto 0;
   padding: 20px;
-  border: 2px solid #2c0672; /* Borde de 2px de grosor y color negro */
-  border-radius: 10px; /* Bordes redondeados (opcional, puedes ajustarlo) */
+  border: 2px solid #2c0672;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
 .boton-container {
-  text-align: center; /* Centra los botones */
+  text-align: center;
 }
 
 .boton-container button {
-  margin: 10px; /* Espacio entre los botones */
+  margin: 10px;
+}
+
+.titulo-color {
+  color: #1900f7; /* Aquí puedes poner cualquier color que desees */
 }
 </style>
